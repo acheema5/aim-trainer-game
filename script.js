@@ -47,6 +47,7 @@ function createTarget(){
         clearInterval(shrinkInterval);
         score += 10;
         scoreDisplay.textContent = `Score: ${score}`;
+        target.remove();
         currentTarget = null;
         setTimeout(createTarget, 500);
     }); 
