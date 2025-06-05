@@ -16,7 +16,7 @@ function createTarget(){
     
     let size = 80;
     const shrinkRate = Math.random() * 0.5 + 0.5;
-    const intervalTime = 300;
+    const intervalTime = 30;
 
     const maxX = gameArea.clientWidth - size;
     const maxY = gameArea.clientHeight - size;
