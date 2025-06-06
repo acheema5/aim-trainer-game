@@ -3,6 +3,8 @@ const scoreDisplay = document.getElementById('score');
 const gameOverDisplay = document.getElementById('gameOver');
 const startButton = document.getElementById('startButton');
 const resetButton = document.getElementById('resetButton');
+const promptMessage = document.getElementById('promptMessage');
+
 
 let score = 0;
 let gameOver = false;
@@ -61,6 +63,7 @@ function startGame() {
     gameOver = false;
     gameOverDisplay.style.display = 'none';
     gameArea.innerHTML = '';
+    promptMessage.style.display = 'none';
     createTarget();
 }
 
@@ -78,6 +81,9 @@ function resetGame() {
     gameOverDisplay.style.display = 'none';
     gameArea.innerHTML = "";
     currentTarget = null;
+
+    gameArea.appendChild(promptMessage);
+    promptMessage.style.display = 'block';
 }
 
 function endGame() {

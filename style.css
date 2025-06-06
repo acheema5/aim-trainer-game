@@ -62,3 +62,14 @@ button {
 button:hover {
   background-color: #0057cc;
 }
+#promptMessage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  color: white;
+}
+#promptMessage.hidden {
+  display: none;
+}
