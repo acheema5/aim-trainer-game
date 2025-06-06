@@ -15,7 +15,7 @@ function createTarget(){
     target.classList.add('target');
     
     let size = 80;
-    const shrinkRate = Math.random() * 0.5 + 0.5;
+    const shrinkRate = Math.random() * 1.0 + 1.0;
     const intervalTime = 30;
 
     const maxX = gameArea.clientWidth - size;
@@ -49,7 +49,7 @@ function createTarget(){
         scoreDisplay.textContent = `Score: ${score}`;
         target.remove();
         currentTarget = null;
-        setTimeout(createTarget, 500);
+        setTimeout(createTarget, 100);
     }); 
 }
 
