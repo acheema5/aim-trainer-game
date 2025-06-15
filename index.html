@@ -13,7 +13,14 @@
             <p id="promptMessage" style="color: white; font-size: 1.5rem;">PRESS START GAME</p>
         </div>
         <p id="gameOver" style="display: none;">Game Over</p>
-
+        <form id="difficultyForm">
+            <label for="difficulty">Choose Difficulty:</label>
+            <select id="difficulty" name="difficulty">
+              <option value="easy">Easy</option>
+              <option value="medium" selected>Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </form>          
         <button id="startButton">Start Game</button>
         <button id="resetButton">Reset Game</button>
 
