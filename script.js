@@ -4,6 +4,7 @@ const gameOverDisplay = document.getElementById('gameOver');
 const startButton = document.getElementById('startButton');
 const resetButton = document.getElementById('resetButton');
 const promptMessage = document.getElementById('promptMessage');
+const difficultySelect = document.getElementById('difficulty');
 
 
 let score = 0;
@@ -11,49 +12,64 @@ let gameOver = false;
 let currentTarget = null;
 let shrinkInterval = null;
 
-function createTarget(){
+function createTarget() {
     if (gameOver) return;
+  
     const target = document.createElement('div');
     target.classList.add('target');
-    
+  
     let size = 80;
-    const shrinkRate = Math.random() * 1.0 + 1.0;
-    const intervalTime = 30;
-
+  
+    // Difficulty-based behavior
+    let shrinkRate, intervalTime;
+    const difficulty = difficultySelect.value;
+  
+    if (difficulty === 'easy') {
+      shrinkRate = 0.5;
+      intervalTime = 40;
+    } else if (difficulty === 'medium') {
+      shrinkRate = 1.0;
+      intervalTime = 30;
+    } else {
+      // hard
+      shrinkRate = 1.5;
+      intervalTime = 20;
+    }
+  
     const maxX = gameArea.clientWidth - size;
     const maxY = gameArea.clientHeight - size;
     const x = Math.random() * maxX;
     const y = Math.random() * maxY;
-
+  
     target.style.left = `${x}px`;
     target.style.top = `${y}px`;
     target.style.width = `${size}px`;
     target.style.height = `${size}px`;
-
+  
     gameArea.appendChild(target);
     currentTarget = target;
-
+  
     shrinkInterval = setInterval(() => {
-        size -= shrinkRate;
-        if (size <= 0) {
-            clearInterval(shrinkInterval);
-            endGame();
-        }
-        else{
-            target.style.width = `${size}px`;
-            target.style.height = `${size}px`;
-        }
-    }, intervalTime);
-
-    target.addEventListener('click', () => {
+      size -= shrinkRate;
+      if (size <= 0) {
         clearInterval(shrinkInterval);
-        score += 10;
-        scoreDisplay.textContent = `Score: ${score}`;
-        target.remove();
-        currentTarget = null;
-        setTimeout(createTarget, 100);
-    }); 
-}
+        endGame();
+      } else {
+        target.style.width = `${size}px`;
+        target.style.height = `${size}px`;
+      }
+    }, intervalTime);
+  
+    target.addEventListener('click', () => {
+      clearInterval(shrinkInterval);
+      score += 10;
+      scoreDisplay.textContent = `Score: ${score}`;
+      target.remove();
+      currentTarget = null;
+      setTimeout(createTarget, 0);
+    });
+  }
+  
 
 function startGame() {
      if (!gameOver && currentTarget !== null) return;

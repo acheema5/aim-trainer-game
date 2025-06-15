@@ -73,3 +73,11 @@ button:hover {
 #promptMessage.hidden {
   display: none;
 }
+#difficultyForm {
+  margin: 10px;
+}
+
+#difficulty {
+  padding: 5px;
+  font-size: 1rem;
+}
